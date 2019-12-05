@@ -1,0 +1,3 @@
+[submodule "src/DictStream"]
+	path = src/DictStream
+	url = https://github.com/muguangyi/DictStream.git
