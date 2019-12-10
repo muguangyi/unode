@@ -20,7 +20,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UNode\UNode.csproj" />
+    <ProjectReference Include="..\UNode\UNode.csproj">
+      <Private>false</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
