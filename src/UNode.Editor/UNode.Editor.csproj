@@ -4,23 +4,30 @@
   </PropertyGroup>
   
   <PropertyGroup>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>../../build</OutputPath>
+    <OutputPath>../../build/Editor</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>../../build</OutputPath>
+    <OutputPath>../../build/Editor</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DictStream\src\DictStream\DictStream.csproj" />
     <ProjectReference Include="..\UNode\UNode.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="DictStream">
+      <HintPath>..\..\lib\DictStream\netstandard2.0\DictStream.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>..\..\lib\unity\UnityEditor.dll</HintPath>
       <Private>false</Private>
