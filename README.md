@@ -1,5 +1,7 @@
 # UNode
 
+![build](https://github.com/muguangyi/unode/workflows/build/badge.svg)
+
 > UNode is Unity Node Interface foundation.
 
 ## Install
