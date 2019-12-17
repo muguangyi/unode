@@ -34,7 +34,6 @@ namespace UNode.Editor
             this.layout = manager.Find(node.ID);
             this.Node.Dispatcher.AddListener(Message.DESTROY, NotifyHandler);
             this.Node.Dispatcher.AddListener(Node.NodeMessage.ADD, NotifyHandler);
-            this.Node.Dispatcher.AddListener(Node.NodeMessage.REMOVE, NotifyHandler);
             this.Node.Dispatcher.AddListener(Node.NodeMessage.SIGNAL, NotifyHandler);
 
             this.Dispatcher = new Dispatcher(this);
@@ -64,7 +63,6 @@ namespace UNode.Editor
             this.Dispatcher.Dispose();
             this.Node.Dispatcher.RemoveListener(Message.DESTROY, NotifyHandler);
             this.Node.Dispatcher.RemoveListener(Node.NodeMessage.ADD, NotifyHandler);
-            this.Node.Dispatcher.RemoveListener(Node.NodeMessage.REMOVE, NotifyHandler);
             this.Node.Dispatcher.RemoveListener(Node.NodeMessage.SIGNAL, NotifyHandler);
 
             if (null != this.texture)
@@ -205,12 +203,6 @@ namespace UNode.Editor
                 AddSpot(spot);
                 RefreshGUI();
             }
-            else if (Node.NodeMessage.REMOVE == message.Type)
-            {
-                var spot = (message as Node.NodeMessage).Spot;
-                RemoveSpot(spot);
-                RefreshGUI();
-            }
             else if (Node.NodeMessage.SIGNAL == message.Type)
             {
                 EnableHighlight();
@@ -250,17 +242,6 @@ namespace UNode.Editor
             element.Layout.Parent = this.layout;
             element.Layout.Width = element.Layout.Height = SPOTSIZE;
             this.spots.Add(element);
-        }
-
-        private void RemoveSpot(Spot spot)
-        {
-            for (var i = 0; i < this.spots.Count; ++i)
-            {
-                if (this.spots[i].Spot == spot)
-                {
-                    this.spots.RemoveAt(i);
-                }
-            }
         }
     }
 }

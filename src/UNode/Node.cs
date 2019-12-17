@@ -20,7 +20,6 @@ namespace UNode
         public sealed class NodeMessage : Message
         {
             public const string ADD = "node.add";
-            public const string REMOVE = "node.remove";
             public const string SIGNAL = "node.signal";
 
             public NodeMessage(string type, Spot spot) : base(type)
@@ -84,6 +83,7 @@ namespace UNode
         {
             if (this.spots.IndexOf(spot) < 0)
             {
+                spot.Index = this.spots.Count;
                 this.spots.Add(spot);
                 this.Dispatcher.Notify(new NodeMessage(NodeMessage.ADD, spot));
             }
@@ -94,28 +94,6 @@ namespace UNode
             foreach (var s in collection)
             {
                 Add(s);
-            }
-        }
-
-        public void Remove(Spot spot)
-        {
-            var index = this.spots.IndexOf(spot);
-            if (index >= 0)
-            {
-                spot.Dispose();
-                this.spots.RemoveAt(index);
-                this.Dispatcher.Notify(new NodeMessage(NodeMessage.REMOVE, spot));
-            }
-        }
-
-        public void RemoveAt(int index)
-        {
-            var spot = GetAt(index);
-            if (null != spot)
-            {
-                spot.Dispose();
-                this.spots.RemoveAt(index);
-                this.Dispatcher.Notify(new NodeMessage(NodeMessage.REMOVE, spot));
             }
         }
 

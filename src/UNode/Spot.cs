@@ -13,6 +13,9 @@ using UnityEngine;
 
 namespace UNode
 {
+    /// <summary>
+    /// Abstract spot object.
+    /// </summary>
     public abstract class Spot : IDisposable
     {
         private string name = null;
@@ -43,8 +46,19 @@ namespace UNode
             this.signalMessage = null;
         }
 
+        /// <summary>
+        /// Gets a value to indicate the index in the owner node.
+        /// </summary>
+        public int Index { get; internal set; } = -1;
+
+        /// <summary>
+        /// Gets or sets a value to indicate the spot unique id.
+        /// </summary>
         public string ID { get; set; } = null;
 
+        /// <summary>
+        /// Gets or sets a value to indicate the spot name.
+        /// </summary>
         public virtual string Name
         {
             get
@@ -57,12 +71,24 @@ namespace UNode
             }
         }
 
+        /// <summary>
+        /// Gets a value to indicate the spot owner node.
+        /// </summary>
         public Node Owner { get; private set; } = null;
 
+        /// <summary>
+        /// Gets a value to indicate how many links it could contain.
+        /// </summary>
         public int Capacity { get; } = -1;
 
+        /// <summary>
+        /// Gets a value to indicate the spot type.
+        /// </summary>
         public SpotType Type { get; } = SpotType.In;
 
+        /// <summary>
+        /// Gets a value to indicate the current link count.
+        /// </summary>
         public int LinkCount
         {
             get
@@ -71,6 +97,9 @@ namespace UNode
             }
         }
 
+        /// <summary>
+        /// Gets a value to indicate whether the spot is hidden.
+        /// </summary>
         public bool IsHidden
         {
             get
